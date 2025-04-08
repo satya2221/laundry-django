@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, View
+
 from core.views import LoginRequiredMixinView
-from .models import LaundryOrder
 from apps.profiles.models import ProfileSetting, Profile
+
+from .models import LaundryOrder
+from .tasks import task_process_laundry
 
 # Create your views here.
 class LaundryOrderListView(LoginRequiredMixinView, ListView):
@@ -39,3 +42,8 @@ class CreateLaundryOrder(LoginRequiredMixinView, View):
 
         quantity = request.POST.get('quantity')
         price_per_quantity = request.POST.get('price')
+
+        task_process_laundry(customer, expected_date, quantity, price_per_quantity)
+
+        return redirect('laundry_order')
+        

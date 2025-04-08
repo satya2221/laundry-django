@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.profiles",
     "apps.authentications",
     "apps.laundries",
+    'huey.contrib.djhuey',
 ]
 
 MIDDLEWARE = [
