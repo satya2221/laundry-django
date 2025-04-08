@@ -15,7 +15,7 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('laundry-order')
 
         messages.error(request, "Invalid Credential")
         return redirect('login')

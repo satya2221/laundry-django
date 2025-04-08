@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="flex h-screen bg-info-content justify-center items-center">
+        <fieldset class="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+            <legend class="fieldset-legend">Login</legend>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label class="fieldset-label">username</label>
+                <input type="text" class="input" placeholder="Username" name="username"/>
+                
+                <label class="fieldset-label">Password</label>
+                <input type="password" class="input" placeholder="Password" name="password"/>
+                
+                <button class="btn btn-neutral mt-4">Login</button>
+            </form>
+          </fieldset>
+    </main>
+{% endblock %}
