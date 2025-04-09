@@ -22,9 +22,9 @@
     <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 flex flex-col">
       <!-- Sidebar content here -->
       {% if user_settings.role == 'staff' %}
-        <li><a>Laundry Baru</a></li>
+        <li><a href="{% url 'create-order' %}" class="{% if request.resolver_match.url_name == 'create-order' %}menu-active{% endif %}">Laundry Baru</a></li>
       {% endif %}
-      <li><a class="{% if request.resolver_match.url_name == 'laundry-order' or request.resolver_match.url_name == 'laundry-detail' or request.resolver_match.url_name == 'laundry-update' %}menu-active{% endif %}">Daftar Laundry</a></li>
+      <li><a href="{% url 'laundry-order' %}" class="{% if request.resolver_match.url_name == 'laundry-order' or request.resolver_match.url_name == 'laundry-detail' or request.resolver_match.url_name == 'laundry-update' %}menu-active{% endif %}">Daftar Laundry</a></li>
       <div class="mt-auto">
         <form method="post" action="{% url 'logout' %}">
           {% csrf_token %}

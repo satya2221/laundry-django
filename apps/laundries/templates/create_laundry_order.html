@@ -1,0 +1,59 @@
+{% extends 'dashboard_base.html' %}
+
+{% block dashboard_content %}
+<div class="card bg-base-300 w-full shadow-sm my-4">
+    <div class="card-body">
+        <h2 class="card-title">Pesanan Laundry Baru</h2>
+            <div class="divider divider-info"></div>
+
+            <form action="">
+                {% csrf_token %}
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Pelanggan</legend>
+                    <input type="text" class="input w-full" placeholder="Type here" />
+                    <p class="fieldset-label">Masukkan username pelanggan atau buatkan username baru dengan masukkan nama depan pelanggan</p>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Tanggal Selesai</legend>
+                    <input type="date" class="input w-full" required/>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Kuantitas (dalam Kilogram)</legend>
+                    <label class="input w-full">
+                        <input type="number" class="grow" min="0" required/>
+                        <span>Kg</span>
+                      </label>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Kuantitas (dalam Kilogram)</legend>
+                    <label class="input w-full">
+                        <input type="number" class="grow" min="0" required/>
+                        <span>Kg</span>
+                    </label>
+                </fieldset>
+
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Harga per Kilogram</legend>
+                    <label class="input w-full">
+                        <span>Rp.</span>
+                        <input id="price" type="number" class="grow" placeholder="Pilih paket" list="price-list" min="0"/>
+                    </label>
+                    <datalist id="price-list">
+                        <option value="7500">
+                        <option value="10500">
+                        <option value="6000">
+                        <option value="5500">
+                    </datalist>
+                    <p class="fieldset-label">Harga dapat dilakukan penyesuaian</p>
+                </fieldset>
+            </form>
+
+            <div class="card-actions justify-end">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+    </div>
+</div>
+{% endblock %}
