@@ -1,17 +1,16 @@
 {% extends 'dashboard_base.html' %}
 
 {% block dashboard_content %}
-    <main class="max-w-3xl m-auto space-y-4">
-        {% for laundry in laundries %}
-            <div class="card bg-base-100 w-96 shadow-sm">
-                <div class="card-body">
-                <h2 class="card-title">Order No: {{ laundry.id }}</h2>
-                <p><b>Diterima Tanggal:</b> {{ laundry.received_date }}</p>
-                <div class="card-actions justify-end">
-                    <button class="btn btn-primary">See details</button>
-                </div>
-                </div>
+    {% for laundry in laundries %}
+        <div class="card bg-base-300 w-full shadow-sm">
+            <div class="card-body">
+            <h2 class="card-title">Order No: {{ laundry.id }}</h2>
+            <p><b>Diterima Tanggal:</b> {{ laundry.received_date }}</p>
+            <div class="card-actions justify-end">
+                <button class="btn btn-primary">See details</button>
             </div>
-        {% endfor %}
-    </main>
+            </div>
+        </div>
+    {% endfor %}
+    
 {% endblock %}
