@@ -1286,6 +1286,34 @@
     grid-row-start: 1;
     min-width: calc(0.25rem * 0);
   }
+  .divider {
+    display: flex;
+    height: calc(0.25rem * 4);
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+    white-space: nowrap;
+    margin: var(--divider-m, 1rem 0);
+    --divider-color: color-mix(in srgb, var(--color-base-content) 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --divider-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+    }
+    &:before, &:after {
+      content: "";
+      height: calc(0.25rem * 0.5);
+      width: 100%;
+      flex-grow: 1;
+      background-color: var(--divider-color);
+    }
+    @media print {
+      &:before, &:after {
+        border: 0.5px solid;
+      }
+    }
+    &:not(:empty) {
+      gap: calc(0.25rem * 4);
+    }
+  }
   .m-3 {
     margin: calc(var(--spacing) * 3);
   }
@@ -1339,6 +1367,9 @@
   }
   .mx-10 {
     margin-inline: calc(var(--spacing) * 10);
+  }
+  .my-4 {
+    margin-block: calc(var(--spacing) * 4);
   }
   .my-5 {
     margin-block: calc(var(--spacing) * 5);
@@ -1657,6 +1688,11 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .divider-info {
+    &:before, &:after {
+      background-color: var(--color-info);
+    }
   }
   .p-3 {
     padding: calc(var(--spacing) * 3);
