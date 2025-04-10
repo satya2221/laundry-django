@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, View
+from django.urls import reverse_lazy
+from django.views.generic import ListView, View, UpdateView
 from django.contrib.auth.models import User
 
 from core.views import LoginRequiredMixinView
@@ -53,4 +54,14 @@ class CreateLaundryOrder(LoginRequiredMixinView, View):
         #process_laundry(user_customer, user_actor, expected_date, quantity, price_per_quantity)
 
         return redirect('laundry-order')
-        
+
+class UpdateLaundryOrder(LoginRequiredMixinView, UpdateView):
+    model = LaundryOrder
+    fields = ['status'] 
+    template_name = 'update_laundry_order.html'
+    success_url = reverse_lazy('laundry-order')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["order"] = self.object
+        return context

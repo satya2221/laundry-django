@@ -7,14 +7,14 @@
                 <h2 class="card-title">Order No: {{ laundry.id }}</h2>
                 <div class="divider divider-info"></div>
 
+                <p><b>Pemilik:</b> {{laundry.customer.profile.name}}</p>
                 <p><b>Diterima Tanggal:</b> {{ laundry.received_date }}</p>
                 <p><b>Perkiraan Selesai:</b> {{laundry.expected_completion_date}}</p>
-                <p><b>Pemilik:</b> {{laundry.customer.profile.name}}</p>
                 <p><b>Berat cucian:</b> {{laundry.laundryitem.quantity}} Kg</p>
                 <p><b>Status Terakhir:</b> {{laundry.status}} </p>
                     
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">See details</button>
+                    <a href="{% url 'update-order' laundry.id %}"><button class="btn btn-primary">See details</button></a>
                 </div>
             </div>
         </div>
