@@ -17,7 +17,7 @@ def process_laundry(customer, actor, expected_date, quantity, price_per_quantity
         )
     print(f"Processing Laundry Order for  {order.customer.profile.name} ")
 
-    #time.sleep(15)
+    time.sleep(5)
 
     LaundryItem.objects.create(order=order, 
                                quantity=quantity, 
@@ -26,7 +26,7 @@ def process_laundry(customer, actor, expected_date, quantity, price_per_quantity
                                )
 
     print(f"Finalizing Laundry order for {order.customer.profile.name} ")
-    #time.sleep(10)
+    time.sleep(2)
 
     print(f"Laundry order {order.id} is successfully created!")
 

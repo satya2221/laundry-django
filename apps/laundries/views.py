@@ -49,8 +49,8 @@ class CreateLaundryOrder(LoginRequiredMixinView, View):
         user_customer = search_user_customer(customer, phone)
         user_actor = User.objects.filter(username=self.request.user).first()
 
-        #task_process_laundry(user_customer, expected_date, quantity, price_per_quantity)
-        process_laundry(user_customer, user_actor, expected_date, quantity, price_per_quantity)
+        task_process_laundry(user_customer, user_actor, expected_date, quantity, price_per_quantity)
+        #process_laundry(user_customer, user_actor, expected_date, quantity, price_per_quantity)
 
         return redirect('laundry-order')
         
