@@ -37,6 +37,8 @@ class LaundryOrderListView(LoginRequiredMixinView, ListView):
 class CreateLaundryOrder(LoginRequiredMixinView, View):
     def get(self, request):
         user_settings = ProfileSetting.objects.get(actor=self.request.user)
+        if user_settings.role != 'staff':
+            return render(request, 'unauthorized.html', status=401)
         return render(request, 'create_laundry_order.html', {'user_settings': user_settings})
     
     def post(self, request):
@@ -61,7 +63,17 @@ class UpdateLaundryOrder(LoginRequiredMixinView, UpdateView):
     template_name = 'update_laundry_order.html'
     success_url = reverse_lazy('laundry-order')
 
+    def dispatch(self, request, *args, **kwargs):
+        user_settings = ProfileSetting.objects.get(actor=self.request.user)
+        if user_settings.role != 'staff':
+            return render(request, 'unauthorized.html', status=401)
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        user_settings = ProfileSetting.objects.get(actor=self.request.user)
+
         context["order"] = self.object
+        context['user_settings'] = user_settings
         return context
